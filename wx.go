@@ -137,7 +137,7 @@ func (w Wx) String() (s string) {
 	if w.Pressure <= 0.0 {
 		s += "b....."
 	} else {
-		s += fmt.Sprintf("b%05.0f", w.Pressure*1.0)         // 1hPa === 1mBar
+		s += fmt.Sprintf("b%05.0f", w.Pressure*10.0)         // 1hPa === 1mBar I don't understand.
 	}
 
 	if w.SolarRad >= 1000 {

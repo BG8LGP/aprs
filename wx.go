@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/ebarkie/weatherlink/units"
+	//"github.com/ebarkie/weatherlink/units"
 )
 
 // Wx represents a weather station observation.
@@ -29,6 +29,7 @@ type Wx struct {
 	WindDir         int
 	WindGust        int
 	WindSpeed       int
+	Pressure        float64
 }
 
 // Zero zeroes all measurements in the observation payload.
@@ -133,10 +134,10 @@ func (w Wx) String() (s string) {
 		s += fmt.Sprintf("h%02d", w.Humidity%100)
 	}
 
-	if w.Altimeter <= 0.0 {
+	if w.Pressure <= 0.0 {
 		s += "b....."
 	} else {
-		s += fmt.Sprintf("b%05.0f", units.Pressure(w.Altimeter*units.Inches).Millibars()*10.0)
+		s += fmt.Sprintf("b%05.0f", w, Pressure*100.0)
 	}
 
 	if w.SolarRad >= 1000 {
@@ -146,7 +147,8 @@ func (w Wx) String() (s string) {
 	}
 
 	// Software
-	s += SwName + SwVers
+	//s += SwName + SwVers
+	s += "GolangAPRS-0.1.0"
 	if w.Type != "" {
 		s += fmt.Sprintf("-%s", w.Type)
 	}

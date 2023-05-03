@@ -137,7 +137,7 @@ func (w Wx) String() (s string) {
 	if w.Pressure <= 0.0 {
 		s += "b....."
 	} else {
-		s += fmt.Sprintf("b%05.0f", w, Pressure*100.0)
+		s += fmt.Sprintf("b%05.0f", w.Pressure*100.0)
 	}
 
 	if w.SolarRad >= 1000 {

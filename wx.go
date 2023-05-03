@@ -29,7 +29,7 @@ type Wx struct {
 	WindDir         int
 	WindGust        int
 	WindSpeed       int
-	Pressure        float64
+	Pressure        float64		//hPa
 }
 
 // Zero zeroes all measurements in the observation payload.
@@ -137,7 +137,7 @@ func (w Wx) String() (s string) {
 	if w.Pressure <= 0.0 {
 		s += "b....."
 	} else {
-		s += fmt.Sprintf("b%05.0f", w.Pressure*100.0)
+		s += fmt.Sprintf("b%05.0f", w.Pressure*1.0)         // 1hPa === 1mBar
 	}
 
 	if w.SolarRad >= 1000 {
